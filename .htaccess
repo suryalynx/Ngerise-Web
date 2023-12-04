@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /Tubes/
+
+RewriteCond %{THE_REQUEST} /Public/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+
+RewriteRule ^((?!Public/).*)$ Public/$1 [L,NC]
+
+Options -Multiviews
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+
+RewriteRule ^(.*)$ Public/index.php?url?=$1 [L]
